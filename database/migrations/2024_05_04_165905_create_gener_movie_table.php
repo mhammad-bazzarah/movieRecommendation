@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('gener_movie', function (Blueprint $table) {
-            $table->integer('userId');
             $table->integer('generId');
+            $table->integer('movieId');
         });
     }
 

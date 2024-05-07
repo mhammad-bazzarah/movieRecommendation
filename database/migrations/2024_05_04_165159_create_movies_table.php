@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('movies', function (Blueprint $table) {
             $table->id('movieId');
             $table->string('title');
-            $table->string('geners');
+            $table->integer('year')->nullable();
         });
     }
 
