@@ -1,0 +1,14 @@
+.logo{
+    height: 60px;
+    margin-right: 10px;
+}
+.nav-head{
+    font-size: larger;
+}
+.nav-title{
+    color: red;
+    font-size:x-large;
+}
+.nav-title:hover{
+    color:red;
+}

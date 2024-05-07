@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Gener;
+use App\Models\Rating;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,5 +21,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+        $this->call(MovieSeeder::class);
+        $this->call(LinkSeeder::class);
+        $this->call(TagSeeder::class);
+        $this->call(RatingSeeder::class);
+        $this->call(GenerSeeder::class);
     }
 }
