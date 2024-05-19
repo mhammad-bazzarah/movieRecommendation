@@ -1,0 +1,168 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(#ca1f1f,#181919);
+  }
+  body::after{
+    content: '';
+    width: 100%;
+    height: 100%;
+    background:white;
+    position: absolute;
+    z-index: -1;
+    clip-path: circle(55% at right 70%);
+  }
+  .image{
+    width: 5%;
+  }
+  
+  
+  .signup-form {
+    background-color:rgb(255,255, 255,0.2);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .signup-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .signup-form input[type="email"],
+  .signup-form input[type="text"],
+  .signup-form input[type="password"],
+  .signup-form input[type="tel"] {
+    width:95%;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-right: 20px; 
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .signup-form input[type="email"]:focus,
+  .signup-form input[type="text"]:focus,
+  .signup-form input[type="password"]:focus,
+  .signup-form input[type="tel"]:focus {
+    outline: none;
+    border-color: #f80505;
+  }
+  
+  .signup-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #f0250a;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  
+  .signup-form button:hover {
+    background-color: #ea0808;
+  }
+  
+  .signup-form .logo {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .signup-form .logo img {
+    width: 80px;
+  }
+  
+  .signup-form .title-text {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .signup-form .login-link {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .signup-form .login-link a {
+    color: #f60909;
+    text-decoration: none;
+  }
+   /* sign up */
+   .bn632-hover {
+    width: 160px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    
+  }
+  
+  .bn632-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+  }
+  
+  .bn632-hover:focus {
+    outline: none;
+  }
+  
+  .bn632-hover.bn18 {
+    background-image: linear-gradient(
+      to right,
+      #0f1010,
+      #2b322e,
+      #cc2d2d,
+      #fa0505
+    );
+    box-shadow: 0 4px 15px 0 rgba(196, 49, 49, 0.75);
+  }
+  /* الحقول بجانب بعضها */
+  .container {
+    display: flex;
+    flex-direction: column; 
+    gap: 10px; 
+  }
+  
+  .row {
+    display: flex;
+    gap: 10px; 
+  }
+  
+  .field {
+    flex: 1; 
+    margin-right: 10px; /* يضيف مسافة إلى يمين كل حقل */
+  }
+  
+  .field:last-child {
+    margin-right: 0; /* يلغي المسافة إلى يمين آخر حقل في كل صف */
+  }
+  /* ////////////////////////////////////////////////////////////////////////////////////////////// */
+  .a7.a37.a1S.a1M.aH.a1R {
+    text-align: center;
+  }
+  .button {
+    display: flex;
+    align-items: center; /* توسيط عمودي */
+    justify-content: center; /* توسيط أفقي */
+  }    
+
+  

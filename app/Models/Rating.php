@@ -9,4 +9,5 @@ class Rating extends Model
 {
     use HasFactory;
     protected $table = 'ratings';
+    protected $primaryKey = 'rateId';
 }

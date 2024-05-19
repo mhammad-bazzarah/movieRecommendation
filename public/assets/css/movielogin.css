@@ -1,0 +1,143 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(#ca1f1f,#181919);
+  }
+  
+  .login-form {
+    background-color:rgb(255,255, 255,0.1);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 100%;
+    
+  }
+  body::after{
+    content: '';
+    width: 100%;
+    height: 100%;
+    background:white;
+    position: absolute;
+    z-index: -1;
+    clip-path: circle(55% at right 70%);
+  }
+  .image{
+    width: 5%;
+  }
+  
+  .login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .login-form input[type="email"],
+  .login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
+  .login-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #f91f07;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  
+  .login-form button:hover {
+    background-color: #fa1d04;
+  }
+  
+  .logo {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .logo img {
+    width: 80px;
+  }
+  
+  .title-text {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .new-account {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .new-account a {
+    color: #f70303;
+    text-decoration: none;
+  }
+  /* log in */
+  .bn632-hover {
+    width: 160px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    
+    
+  }
+  
+  .bn632-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+  }
+  
+  .bn632-hover:focus {
+    outline: none;
+  }
+  
+  .bn632-hover.bn18 {
+    background-image: linear-gradient(
+      to right,
+      #0f1010,
+      #2b322e,
+      #cc2d2d,
+      #fa0505
+    );
+    box-shadow: 0 4px 15px 0 rgba(245, 1, 1, 0.75);
+  }
+  .button {
+    display: flex;
+    align-items: center; /* توسيط عمودي */
+    justify-content: center; /* توسيط أفقي */
+  }
+  .container {
+    padding: 20px; /* يضيف 20 بكسل من المسافة حول جميع الحقول */
+  }
+  
+
+
+
+  
+
+  
