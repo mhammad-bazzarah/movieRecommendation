@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('movieId');
             $table->longText('tag');
             $table->string('timestamp');
+            $table->unique(['userId','movieId']);
         });
     }
 

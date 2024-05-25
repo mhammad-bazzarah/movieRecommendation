@@ -9,7 +9,8 @@
         "laravel/breeze": "^2.0",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
-        "nesbot/carbon": "^3.3"
+        "nesbot/carbon": "^3.3",
+        "php-flasher/flasher-laravel": "^2.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

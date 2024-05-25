@@ -1,6 +1,6 @@
 /*
 Template Name: Fruitkha - Responsive Bootstrap4 Shop Template
-Template URI: 
+Template URI:
 Description: Bootstrap template for fruits or any other kind of shop
 Author: Imran Hossain
 Author URI: https://imransdesign.com/
@@ -16,14 +16,15 @@ body {
   color: #666666;
   font-family: "Open Sans", sans-serif;
   overflow-x: hidden;
+  font-size: large;
 }
  .btn-primary {
       background-image: linear-gradient(
       to right,
-      #0f1010, 
-    #2b322e, 
-    #c82b22, 
-    #ff3333  
+      #0f1010,
+    #2b322e,
+    #c82b22,
+    #ff3333
     );
     box-shadow: 0 4px 15px 0 rgba(232, 48, 15, 0.75);
 
@@ -39,12 +40,12 @@ body {
      .text-centerr {
         background-image: linear-gradient(
       to right,
-      #0f1010, 
-    #352929, 
-    #dc1717, 
-    #e14119  
+      #0f1010,
+    #352929,
+    #dc1717,
+    #e14119
     );/* Indigo color for headings */ /* Indigo background for footer */
-   
+
     color: white !important;
     text-align: center !important;
     }
@@ -59,7 +60,7 @@ a {
 a:hover, a:active, a:focus {
   color: #e1420e;
   outline: none;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 p {
@@ -169,7 +170,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #intro .intro-text {
   padding-top: 140px;
-   
+
   text-align: center;
   vertical-align: top;
 }
@@ -329,7 +330,7 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 18px;
   outline: none;
 }
 
@@ -963,7 +964,7 @@ a.boxed-btn, a.bordered-btn, a.cart-btn {
   background-size: cover;
   background-position: center center;
   position: relative;
- 
+
   background-attachment: fixed;
   padding-top: 200px;
 }
@@ -2920,7 +2921,7 @@ a.cart-btn i {
 }
 
 .single-product-content h3 {
-  font-size: 22px;
+  font-size: 40px;
   font-weight: 600;
 }
 
@@ -2932,12 +2933,16 @@ p.single-product-pricing span {
   font-weight: 400;
 }
 
-.single-product-content p {
-  font-size: 15px;
+.single-product-content p  strong{
+  /* font-size: 15px; */
   color: #555;
   line-height: 1.8;
 }
-
+.single-product-content p  {
+    font-size: 25px;
+    color: #555;
+    line-height: 1.8;
+  }
 .single-product-content p.single-product-pricing {
   font-size: 32px;
   font-weight: 700;
@@ -3181,12 +3186,7 @@ table.order-details tbody td {
   border: 1px solid #eeeeee;
 }
 
-.single-product-item {
-  -webkit-box-shadow: 0 0 20px #e4e4e4;
-  box-shadow: 0 0 20px #e4e4e4;
-  padding-bottom: 50px;
-  border-radius: 5px;
-}
+
 
 /* -----------------------------------------------------------------------------
 
@@ -3220,3 +3220,24 @@ table.order-details tbody td {
   vertical-align: middle;
   width: 100%;
 }
+.single-product-content .geners p {
+    color: #E03B38 !important;
+    font-size: large !important;
+  }
+
+.single-product-content  .tags p{
+    color: #C73431 !important ;
+    font-size: large !important;
+  }
+
+  .btn-red-black {
+    background-image: linear-gradient(to right, #0f1010, #2b322e, #c82b22, #ff3333);
+    box-shadow: 0 4px 15px 0 rgba(232, 48, 15, 0.75);
+    padding: 20px;
+    background-color: #f91f07;
+    border: none;
+    color: #fff !important;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+  }

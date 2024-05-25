@@ -1,79 +1,40 @@
 @extends('frontend.layouts.layout')
 @section('content')
     <div class="container movies-section">
-        <h2>Suggested Movies</h2><hr>
+        <h2>Your Favorite Movies</h2><hr>
         <div class="row">
-          <div class="col-sm-4">
-            <div class="card movie-card">
-              <img src="images/9.jpg" alt="Movie 9">
-              <div class="card-body">
-                <h5 class="card-title">Movie 9</h5>
-                <p class="card-text">Rating: 8.2/10</p>
-                <a href="detailes.html" class="btn btn-primary">Details</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="card movie-card">
-              <img src="images/movie6.jpg" alt="Movie 10">
-              <div class="card-body">
-                <h5 class="card-title">Movie 10</h5>
-                <p class="card-text">Rating: 7.9/10</p>
-                <a href="detailes.html" class="btn btn-primary">Details</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4" >
-            <div class="card movie-card">
-              <img src="images/movie2.jpg" alt="Movie 11">
-              <div class="card-body">
-                <h5 class="card-title">Movie 11</h5>
-                <p class="card-text">Rating: 8.4/10</p>
-                <a href="detailes.html" class="btn btn-primary">Details</a>
-              </div>
-            </div>
-          </div>
-        <div class="col-sm-4" >
-        <div class="card movie-card">
-          <img src="images/5.jpg" alt="Movie 5">
-          <div class="card-body">
-            <h5 class="card-title">Movie 5</h5>
-            <p class="card-text">Rating: 9.5/10</p>
-            <a href="detailes.html" class="btn btn-primary">Details</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4" >
-        <div class="card movie-card">
-          <img src="images/6.jpg" alt="Movie 6">
-          <div class="card-body">
-            <h5 class="card-title">Movie 6</h5>
-            <p class="card-text">Rating: 9.0/10</p>
-            <a href="detailes.html" class="btn btn-primary">Details</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="card movie-card">
-          <img src="images/7.jpg" alt="Movie 7">
-          <div class="card-body">
-            <h5 class="card-title">Movie 7</h5>
-            <p class="card-text">Rating: 8.7/10</p>
-            <a href="detailes.html" class="btn btn-primary">Details</a>
-          </div>
-        </div>
-      </div>
-        </div>
-      </div>
-       <div class="container movies-section">
+            @foreach ($movies as $movie)
+                <div class="col-md-4">
+                    <div class="card rating-card">
+                        <img src="{{ asset('assets/images/1.jpg') }}" alt="Movie 1">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $movie->title }}</h5>
+                            {{-- Current Rating --}}
+                            <div class="container current-rate">
+                                <div class="row">
+                                    <div class="col mt-4">
+                                        <div class="form-group row">
+                                            <div class="col">
+                                                <div class="rated">
+                                                    @for ($i = 1; $i <= $movie->rate; $i++)
+                                                        <label class="star-rating-complete"
+                                                            title="text">{{ $i }} stars</label>
+                                                    @endfor
+                                                </div>
+                                                <div class="num">{{ $movie->numOfRatings }} Ratings </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-        <div class="row movie-row">
-          </div>
-        <div class="navigation-arrows">
-          <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
-          <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+                            <a href="{{ route('show', $movie) }}" class="btn btn-red-black">Details</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
-      </div>
-      </div><br><br>
+        {{-- {{ $movies->links() }} --}}
+    </div>
 
 @endsection

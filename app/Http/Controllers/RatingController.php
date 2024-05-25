@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
+use App\Models\Rating;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class RatingController extends Controller
@@ -27,7 +30,46 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tagMessage="";
+        $request->validate([
+            'rating' => 'required',
+            'tag' => 'string'
+        ]);
+
+        $rate = new Rating();
+        $rate->userId = Auth()->user()->id;
+        $rate->rating = $request->rating;
+        $rate->movieId = $request->movieId;
+        $rate->timestamp = now();
+        $rate->save();
+
+        // Update The movie's rate
+        $movie = Movie::findOrFail($request->movieId);
+        $counter = 0;
+        foreach ($movie->rates as $rate) {
+            $counter += $rate->rating;
+        }
+        $numOfRatings = count($movie->rates);
+        $rate = round($counter / $numOfRatings);
+        $movie->rate = $rate;
+        $movie->numOfRatings = $numOfRatings;
+        $movie->save();
+
+        // Add tag to the movie if provided
+        if($request->has('tag')){
+            $tag = new Tag();
+            $tag->tag= $request->tag;
+            $tag->movieId = $request->movieId;
+            $tag->userId = Auth()->user()->id;
+            $tag->timestamp = now();
+            $tag->save();
+            $tagMessage = "and you tag is add to the movie";
+        }
+
+        flash()->success('new rating add successfully'. $tagMessage);
+        return redirect()->back();
+
+
     }
 
     /**

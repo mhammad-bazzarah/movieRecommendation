@@ -1,26 +1,28 @@
 <?php
 
+use App\Http\Controllers\ApriorController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RatingController;
 use Illuminate\Support\Facades\Route;
 
-
-
-
-
 Route::middleware('auth')->group(function () {
+
     // Frontend Routes:
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/topRating',[HomeController::class,'topRating'])->name('topRating');
     Route::get('/suggested',[HomeController::class,'suggested'])->name('suggested');
     Route::get('/favorite',[HomeController::class,'favorite'])->name('favorite');
+    Route::get('/showMovie/{movie}',[HomeController::class,'showMovie'])->name('show');
 
-
-
-    Route::get('/run', [DataController::class, 'edit']);
     Route::resource('/rating', RatingController::class);
+
+    //Aprior Algorithm routes:
+    Route::get('/aprior',[ApriorController::class,'index'])->name('aprior.index');
+
+
+
 
 });
 

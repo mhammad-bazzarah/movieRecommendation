@@ -1,4 +1,4 @@
-.rate {
+/* .rate {
     float: left;
     height: 46px;
     padding: 0 10px;
@@ -105,4 +105,4 @@
 .rated>input:checked~label:hover~label,
 .rated>label:hover~input:checked~label {
     color: #c59b08;
-}
+} */

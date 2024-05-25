@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id('movieId');
             $table->string('title');
             $table->integer('year')->nullable();
+            $table->integer('rate')->nullable();
+            $table->integer('numOfRatings')->nullable();
+            
         });
     }
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedInteger('movieId');
             $table->float('rating');
             $table->String('timestamp');
+            $table->unique(['userId','movieId']);
         });
     }
 

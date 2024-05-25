@@ -10,4 +10,5 @@ class Tag extends Model
     use HasFactory;
 
     protected $primaryKey = 'tagId';
+    public $timestamps = false;
 }

@@ -8,7 +8,7 @@ body {
     width: 100%;
     background: linear-gradient(#ca1f1f,#181919);
   }
-  
+
   .login-form {
     background-color:rgb(255,255, 255,0.1);
     padding: 20px;
@@ -16,7 +16,7 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     max-width: 400px;
     width: 100%;
-    
+
   }
   body::after{
     content: '';
@@ -30,24 +30,24 @@ body {
   .image{
     width: 5%;
   }
-  
+
   .login-form h2 {
     text-align: center;
     margin-bottom: 20px;
   }
-  
+
   .login-form input[type="email"],
   .login-form input[type="password"] {
     width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
   }
-  
+
   .login-form button {
     width: 100%;
-    padding: 10px;
+    padding: 20px;
     background-color: #f91f07;
     border: none;
     color: #fff;
@@ -55,30 +55,31 @@ body {
     cursor: pointer;
     border-radius: 10px;
   }
-  
+
   .login-form button:hover {
     background-color: #fa1d04;
   }
-  
+
   .logo {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    margin-top: 10px;
   }
-  
+
   .logo img {
     width: 80px;
   }
-  
+
   .title-text {
     text-align: center;
     margin-bottom: 20px;
   }
-  
+
   .new-account {
     text-align: center;
     margin-top: 20px;
   }
-  
+
   .new-account a {
     color: #f70303;
     text-decoration: none;
@@ -100,10 +101,10 @@ body {
     -o-transition: all .4s ease-in-out;
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
-    
-    
+
+
   }
-  
+
   .bn632-hover:hover {
     background-position: 100% 0;
     moz-transition: all .4s ease-in-out;
@@ -111,11 +112,11 @@ body {
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
   }
-  
+
   .bn632-hover:focus {
     outline: none;
   }
-  
+
   .bn632-hover.bn18 {
     background-image: linear-gradient(
       to right,
@@ -128,16 +129,16 @@ body {
   }
   .button {
     display: flex;
-    align-items: center; /* توسيط عمودي */
-    justify-content: center; /* توسيط أفقي */
+    align-items: center;
+    justify-content: center;
   }
   .container {
-    padding: 20px; /* يضيف 20 بكسل من المسافة حول جميع الحقول */
+    padding: 20px;
   }
-  
 
 
 
-  
 
-  
+
+
+

@@ -18,7 +18,9 @@ class MovieSeeder extends Seeder
             DB::table('movies')->insert([
                 'movieId' => $row[0] ,
                 'title' =>   $row[1] ,
-                'year' => $row[2]
+                'year' => $row[2] ,
+                'rate' => $row[3],
+                'numOfRatings' => $row[4]
             ]);
         }
     }
