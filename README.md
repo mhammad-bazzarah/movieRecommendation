@@ -10,3 +10,8 @@ so he would get suggestions depening on his ratigns , using -apriori- algorithm.
 5. Run ```bash php artisan migrate --seed ``` To migrate the database. 
 6. Run ```bash php artisan serve ``` 
 7. Go to link localhost:8000
+
+## Screen Shots
+![home-page](public/images/home.png)
+
+![single-movie-page](public/images/single.png)
