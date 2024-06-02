@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
 
     //Aprior Algorithm routes:
     Route::get('/aprior',[ApriorController::class,'index'])->name('aprior.index');
-
+    Route::post('/apriori/process',[ApriorController::class,'process'])->name('apriori.process');
 
 
 
