@@ -1,19 +1,14 @@
 @php
-dd(count($second));
-    $c=0;
-    foreach ($second as $key=>$v) {
-        echo " it ".$key.": ".$v."<br>";
 
-    }
-
-    foreach ($transactions as $tran) {
-        echo ' Start of trans...... <br>';
-        foreach ($tran as $t) {
-            echo $t . '   ';
-        }
-        echo '<br> End of trans......<br>';
-    }
-
+    // foreach ($transactions as $tran) {
+    //     echo ' Start of trans...... <br>';
+    //     foreach ($tran as $t) {
+    //         echo $t . '   ';
+    //     }
+    //     echo '<br> End of trans......<br>';
+    // }
+    dd($result);
+    
 @endphp
 
 @extends('frontend.layouts.layout')
