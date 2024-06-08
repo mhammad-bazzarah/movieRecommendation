@@ -76,7 +76,7 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center">
                     <div class="breadcrumb-text">
-                        
+
                         <p>See more Details</p>
                         <h1>{{ $movie->title }}</h1>
                     </div>
@@ -119,7 +119,7 @@
                         <div>
                             <a href="https://www.imdb.com/title/tt{{ $link->imdbId }}" target="_blank"
                                 class="btn btn-red-black mt-5 mr-4 p-4">More Info On Imdb </a>
-                            <a href="https://www.themoviedb.org/movie/{{ $link->imdbId }}" target="_blank"
+                            <a href="https://www.themoviedb.org/movie/{{ $link->tmdbId }}" target="_blank"
                                 class="btn btn-red-black mt-5 p-4">More Info On Tmdb </a>
                         </div>
 

@@ -1,10 +1,10 @@
 @extends('frontend.layouts.layout')
 @section('content')
     <div class="container movies-section">
-        <h2>{{ $sum}} Suggested Movies</h2>
+        <h2>{{ $sum }} Results For "{{$searchTerm}}"</h2>
         <hr>
         <div class="row">
-            @foreach ($suggested_movies as $movie)
+            @foreach ($movies as $movie)
                 <div class="col-md-4">
                     <div class="card rating-card">
                         <img src="{{ asset('assets/images/1.jpg') }}" alt="Movie 1">
@@ -35,6 +35,5 @@
                 </div>
             @endforeach
         </div>
-        {{ $suggested_movies->links() }}
     </div>
 @endsection

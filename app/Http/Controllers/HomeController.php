@@ -7,6 +7,7 @@ use App\Models\Link;
 use App\Models\Movie;
 use App\Models\Rating;
 use App\Models\Tag;
+use Flasher\Laravel\Facade\Flasher;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -43,7 +44,24 @@ class HomeController extends Controller
         return view('frontend.favorite', compact('movies'));
     }
 
-    public function suggested(){
-        return view('frontend.suggested');
+    function search(Request $request)
+    {
+        $search = $request->validate([
+            'search' => 'nullable'
+        ]);
+
+        $searchTerm = $search['search'];
+        if (empty($searchTerm)) {
+            Flash()->error('Please enter something to search.');
+            return Redirect()->back();
+        }
+        $movies = Movie::where('title', 'like', "%$searchTerm%")->get();
+        $sum = count($movies);
+        return view('frontend.searchResult', compact('movies', 'searchTerm', 'sum'));
     }
+
+
+
+
+    
 }

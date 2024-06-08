@@ -15,8 +15,11 @@
         </li>
         <li class="nav-item">
             <div class="search-container">
-                <input type="text" class="search-box" placeholder="Search...">
-                <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+                <form action="/search" method="POST">
+                    @csrf
+                    <input type="text" class="search-box" placeholder="Search..." name="search">
+                    <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+                </form>
             </div>
         </li>
     </ul>

@@ -15,9 +15,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/suggested',[ApriorController::class,'suggested'])->name('suggested');
     Route::get('/favorite',[HomeController::class,'favorite'])->name('favorite');
     Route::get('/showMovie/{movie}',[HomeController::class,'showMovie'])->name('show');
-
     Route::resource('/rating', RatingController::class);
-
+    Route::post('/search',[HomeController::class,'search'])->name('search');
     //Aprior Algorithm routes:
     Route::get('/aprior',[ApriorController::class,'index'])->name('aprior.index');
     Route::post('/apriori/process',[ApriorController::class,'process'])->name('apriori.process');

@@ -21,20 +21,21 @@ class ApriorController extends Controller
     }
     function suggested()
     {
-        $suggested_movies = Cache::remember('suggested_movies', 120, function () {
-            $suggestions =  $this->sugget(self::$numOfUsers);
-            return   Movie::whereIn('movieId', $suggestions)->simplePaginate(6);
-        });
-
-
-        return view('frontend.suggested', compact('suggested_movies'));
+        // $suggested_movies = Cache::remember('suggested_movies', 120, function () {
+        //     $suggestions =  $this->sugget(self::$numOfUsers);
+        //     return   Movie::whereIn('movieId', $suggestions)->simplePaginate(6);
+        // });
+        $suggestions =  $this->sugget(self::$numOfUsers);
+        $suggested_movies =       Movie::whereIn('movieId', $suggestions)->paginate(6);
+        $sum = count($suggested_movies);
+        return view('frontend.suggested', compact('suggested_movies','sum'));
     }
     function process(Request $request)
     {
-        $num = $request->numOfTransactions;
-        $min_supp_count = $request->min_supp_count;
-        $min_supp = $request->min_supp;
-        $min_conf = $request->min_conf;
+        $num = $request->numOfTransactions ? $request->numOfTransactions : self::$numOfUsers ;
+        $min_supp_count = $request->min_supp_count ? $request->min_supp_count : self::min_supp_count;
+        $min_supp = $request->min_supp ? $request->min_supp : self::min_supp;
+        $min_conf = $request->min_conf ? $request->min_conf : self::min_conf;
         $suggestions =  $this->sugget($num, $min_supp_count, $min_supp, $min_conf);
         $suggested_movies = Movie::whereIn('movieId', $suggestions)->simplePaginate(6);
         return view('frontend.suggested', compact('suggested_movies'));
@@ -340,7 +341,6 @@ class ApriorController extends Controller
         // For now we are working on 1000 movies to choose from
         // but we will optimize the algorithm .
         if ($matchFound) {
-            echo " match found";
             $num = count($result);
             $movies = Movie::orderByDesc('rate')->orderByDesc('numOfRatings')->take(1000)->get();
             foreach ($movies as $movie) {
