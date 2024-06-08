@@ -16,7 +16,6 @@ class HomeController extends Controller
         $movies  = Movie::orderByDesc('year')->simplePaginate(6);
         $ratings = Rating::all();
         $geners = Gener::all();
-
         return  view('frontend.index',compact('movies','ratings','geners'));
     }
 
