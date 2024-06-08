@@ -12,7 +12,7 @@ Route::middleware('auth')->group(function () {
     // Frontend Routes:
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/topRating',[HomeController::class,'topRating'])->name('topRating');
-    Route::get('/suggested',[HomeController::class,'suggested'])->name('suggested');
+    Route::get('/suggested',[ApriorController::class,'suggested'])->name('suggested');
     Route::get('/favorite',[HomeController::class,'favorite'])->name('favorite');
     Route::get('/showMovie/{movie}',[HomeController::class,'showMovie'])->name('show');
 

@@ -17,28 +17,27 @@ class ApriorController extends Controller
     static $supportcounts = [];
     function index()
     {
+        return view('frontend.aprior');
+    }
+    function suggested()
+    {
+        $suggested_movies = Cache::remember('suggested_movies', 120, function () {
+            $suggestions =  $this->sugget(self::$numOfUsers);
+            return   Movie::whereIn('movieId', $suggestions)->simplePaginate(6);
+        });
 
 
-        // $transactions = Cache::remember('transactions', 300, function () use($numOfUsers) {
-        //     return $this->getTransactions($numOfUsers);
-        // });
-        // $transactions = Cache::remember('transactions', 10, function () {
-        //     return $this->getTransactions(10);
-        // });
-
-        // $l1 = $this->level_1($transactions);
-        // $l2 = $this->level_2($transactions, $l1);
-        // $joins = $this->generateJoins($transactions, $l2, self::min_supp_count, 3);
-        // $joins = $this->generateJoins($transactions,$l3,self::min_supp_count,4);
-
-        // $result = $this->getFinalLevelArrays($transactions);
-        // $supps = $this->getSupportCounts();
-        // $rules = $this->generate_rules($result);
-        // $accepted = $this->getAcceptedRules($rules, 10);
-        $accepted = $this->run(10);
-        $userFav = $this->sugget(10);
-        // $count = self::$supportcounts[serialize($userFav)];
-        return view('frontend.aprior', compact('userFav','accepted'));
+        return view('frontend.suggested', compact('suggested_movies'));
+    }
+    function process(Request $request)
+    {
+        $num = $request->numOfTransactions;
+        $min_supp_count = $request->min_supp_count;
+        $min_supp = $request->min_supp;
+        $min_conf = $request->min_conf;
+        $suggestions =  $this->sugget($num, $min_supp_count, $min_supp, $min_conf);
+        $suggested_movies = Movie::whereIn('movieId', $suggestions)->simplePaginate(6);
+        return view('frontend.suggested', compact('suggested_movies'));
     }
     /**
      * returns the transaction ,each trasactoin represent the id's of
@@ -47,7 +46,7 @@ class ApriorController extends Controller
      * @param integer $numOfUsers
      * @return array
      */
-    function getTransactions($numOfUsers )
+    function getTransactions($numOfUsers)
     {
         $users = User::take($numOfUsers)->get();
         $transactions = [];
@@ -82,7 +81,7 @@ class ApriorController extends Controller
     {
         $trans = $transactions;
         $result = [];
-        $frequency = array_fill(0, 18, 0);
+        $frequency = array_fill(0, 19, 0);
         // join:
         foreach ($trans as $row) {
             foreach ($row as $element) {
@@ -269,7 +268,7 @@ class ApriorController extends Controller
      * @param int $min_conf
      * @return array
      */
-    function getAcceptedRules($rules, $numOfUsers , $min_supp = self::min_supp, $min_conf = self::min_conf)
+    function getAcceptedRules($rules, $numOfUsers, $min_supp = self::min_supp, $min_conf = self::min_conf)
     {
         $accepted = [];
         foreach ($rules as $rule) {
@@ -303,9 +302,10 @@ class ApriorController extends Controller
         return $accepted;
     }
 
-    function sugget($numOfUsers)
+    function sugget($numOfUsers, $min_supp_count = self::min_supp_count, $min_supp = self::min_supp, $min_conf = self::min_conf)
     {
-        $association_rules = $this->run($numOfUsers);
+        $suggestions = [];
+        $association_rules = $this->run($numOfUsers, $min_supp_count, $min_supp, $min_conf);
         $userFavourites = [];
         $user = Auth()->user();
         $ratings  = $user->ratings;
@@ -314,27 +314,54 @@ class ApriorController extends Controller
                 $movie_id = $rate->movieId;
                 $movie = Movie::findOrFail($movie_id);
                 $geners = $movie->geners()->pluck('name');
-
                 $numericGeners = $this->NumericMapping($geners);
                 $diff = collect($numericGeners)->diff($userFavourites);
                 $userFavourites = array_merge($userFavourites, $diff->toArray());
             }
         }
         sort($userFavourites);
-        // if(isset($association_rules[]))
 
-        return $userFavourites;
+        $matchFound = false;
+        $result = [];
+        // Loop until there's only one item left in the search array
+        while (count($userFavourites) > 1) {
+            // Try to find a match
+            foreach ($association_rules as $ruleItem) {
+                if (array_diff($userFavourites, $ruleItem['antecedent']) === []) {
+                    $matchFound = true;
+                    $result = $ruleItem['consequent'];
+                    break 2; // Break out of both loops if a match is found
+                }
+            }
+            // No match found, remove the last item
+            array_pop($userFavourites);
+        }
+
+        // For now we are working on 1000 movies to choose from
+        // but we will optimize the algorithm .
+        if ($matchFound) {
+            echo " match found";
+            $num = count($result);
+            $movies = Movie::orderByDesc('rate')->orderByDesc('numOfRatings')->take(1000)->get();
+            foreach ($movies as $movie) {
+                $geners = $movie->geners()->pluck('name');
+                $numericGeners = $this->NumericMapping($geners);
+                $diff = array_diff($result, $numericGeners);
+                if (count($diff) < $num) {
+                    $suggestions[] = $movie->movieId;
+                }
+            }
+        }
+
+        return $suggestions;
     }
 
     /**
      *Run The algorithm depending on the user's parameters :
      * @param Request $request
-     * @return void
+     * @return \Illuminate\View\View
      */
-    function process(Request $request)
-    {
-        dd($request);
-    }
+
 
 
 
@@ -374,41 +401,41 @@ class ApriorController extends Controller
         $numericGeners = [];
         foreach ($geners as $gener) {
             if ($gener == "Action") {
-                $numericGeners[] = 0;
-            } elseif ($gener == "Adventure") {
                 $numericGeners[] = 1;
-            } elseif ($gener == "Animation") {
+            } elseif ($gener == "Adventure") {
                 $numericGeners[] = 2;
-            } elseif ($gener == "Children's") {
+            } elseif ($gener == "Animation") {
                 $numericGeners[] = 3;
-            } elseif ($gener == "Comedy") {
+            } elseif ($gener == "Children's") {
                 $numericGeners[] = 4;
-            } elseif ($gener == "Crime") {
+            } elseif ($gener == "Comedy") {
                 $numericGeners[] = 5;
-            } elseif ($gener == "Documentary") {
+            } elseif ($gener == "Crime") {
                 $numericGeners[] = 6;
-            } elseif ($gener == "Drama") {
+            } elseif ($gener == "Documentary") {
                 $numericGeners[] = 7;
-            } elseif ($gener == "Fantasy") {
+            } elseif ($gener == "Drama") {
                 $numericGeners[] = 8;
-            } elseif ($gener == "Film-Noir") {
+            } elseif ($gener == "Fantasy") {
                 $numericGeners[] = 9;
-            } elseif ($gener == "Horror") {
+            } elseif ($gener == "Film-Noir") {
                 $numericGeners[] = 10;
-            } elseif ($gener == "Musical") {
+            } elseif ($gener == "Horror") {
                 $numericGeners[] = 11;
-            } elseif ($gener == "Mystery") {
+            } elseif ($gener == "Musical") {
                 $numericGeners[] = 12;
-            } elseif ($gener == "Romance") {
+            } elseif ($gener == "Mystery") {
                 $numericGeners[] = 13;
-            } elseif ($gener == "Sci-Fi") {
+            } elseif ($gener == "Romance") {
                 $numericGeners[] = 14;
-            } elseif ($gener == "Thriller") {
+            } elseif ($gener == "Sci-Fi") {
                 $numericGeners[] = 15;
-            } elseif ($gener == "War") {
+            } elseif ($gener == "Thriller") {
                 $numericGeners[] = 16;
-            } elseif ($gener == "Western") {
+            } elseif ($gener == "War") {
                 $numericGeners[] = 17;
+            } elseif ($gener == "Western") {
+                $numericGeners[] = 18;
             }
         }
         return $numericGeners;

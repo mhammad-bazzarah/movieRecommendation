@@ -4,16 +4,37 @@
         <h2>Suggested Movies</h2>
         <hr>
         <div class="row">
-            <div class="col-sm-4">
-                <div class="card movie-card">
-                    <img src="{{ asset('assets/images/movie1.jpg') }}" alt="Movie 12">
-                    <div class="card-body">
-                        <h5 class="card-title">Movie 12</h5>
-                        <p class="card-text">Rating: 8.6/10</p>
-                        <a href="#" class="btn btn-primary">Details</a>
+            @foreach ($suggested_movies as $movie)
+                <div class="col-md-4">
+                    <div class="card rating-card">
+                        <img src="{{ asset('assets/images/1.jpg') }}" alt="Movie 1">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $movie->title }}</h5>
+                            {{-- Current Rating --}}
+                            <div class="container current-rate">
+                                <div class="row">
+                                    <div class="col mt-4">
+                                        <div class="form-group row">
+                                            <div class="col">
+                                                <div class="rated">
+                                                    @for ($i = 1; $i <= $movie->rate; $i++)
+                                                        <label class="star-rating-complete"
+                                                            title="text">{{ $i }} stars</label>
+                                                    @endfor
+                                                </div>
+                                                <div class="num">{{ $movie->numOfRatings }} Ratings </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a href="{{ route('show', $movie) }}" class="btn btn-red-black">Details</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
         </div>
+        {{ $suggested_movies->links() }}
     </div>
 @endsection

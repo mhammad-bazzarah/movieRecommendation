@@ -1,6 +1,4 @@
-@php
-    // dd($accepted)
-@endphp
+
 
 @extends('frontend.layouts.layout')
 @section('content')
@@ -20,7 +18,7 @@
                                 <h5 class="d-inline">Number Of Transactions: </h5>
                                 <label for="numOfTransactions"> <span id="numOfTransactionsValue">1</span></label>
                                 <input type="range" class="form-control" id="numOfTransactions" name="numOfTransactions"
-                                    min="10" max="500" step="10"
+                                    min="10" max="40" step="1"
                                     oninput="numOfTransactionsValue.value = numOfTransactions.value">
                             </div>
 
@@ -28,7 +26,7 @@
                                 <h5 class="d-inline">Minimum Support Count: </h5>
                                 <label for="min_supp_count"> <span id="min_supp_countValue">1</span></label>
                                 <input type="range" class="form-control" id="min_supp_count" name="min_supp_count"
-                                    min="1" max="50" step="1"
+                                    min="1" max="10" step="1"
                                     oninput="min_supp_countValue.value = min_supp_count.value">
                             </div>
 

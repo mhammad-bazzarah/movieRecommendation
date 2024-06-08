@@ -12,39 +12,38 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
 
-    public function index(){
+    public function index()
+    {
         $movies  = Movie::orderByDesc('year')->simplePaginate(6);
         $ratings = Rating::all();
         $geners = Gener::all();
-        return  view('frontend.index',compact('movies','ratings','geners'));
+        return  view('frontend.index', compact('movies', 'ratings', 'geners'));
     }
 
-    public function showMovie($movie){
+    public function showMovie($movie)
+    {
         $movie = Movie::findOrFail($movie);
         $link = Link::findOrFail($movie->movieId);
 
-        return view('frontend.detailes',compact('movie' ,'link'));
+        return view('frontend.detailes', compact('movie', 'link'));
     }
 
-    public function topRating(){
+    public function topRating()
+    {
         $movies = Movie::orderByDesc('rate')->orderByDesc('numOfRatings')->orderByDesc('year')->simplePaginate(6);
-        return view('frontend.topRating',compact('movies'));
+        return view('frontend.topRating', compact('movies'));
+    }
+
+
+    public function favorite()
+    {
+        $user_id = Auth()->user()->id;
+        $ratedByUser = Rating::where('userId', '=', $user_id)->pluck('movieId');
+        $movies = Movie::whereIn('movieId', $ratedByUser)->orderByDesc('rate')->get();
+        return view('frontend.favorite', compact('movies'));
     }
 
     public function suggested(){
         return view('frontend.suggested');
     }
-
-    public function favorite(){
-        $user_id = Auth()->user()->id;
-        $ratedByUser = Rating::where('userId','=',$user_id)->pluck('movieId');
-        $movies = Movie::whereIn('movieId' ,$ratedByUser)->orderByDesc('rate')->get();
-        return view('frontend.favorite',compact('movies'));
-    }
-
-    public function test(){
-        $movies  = Movie::orderByDesc('year')->simplePaginate(6);
-        return view('frontend.test',compact('movies'));
-    }
-
 }
