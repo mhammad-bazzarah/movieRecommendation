@@ -1,7 +1,7 @@
 @extends('frontend.layouts.layout')
 @section('content')
     <div class="container movies-section">
-        <h2>{{ $sum}} Suggested Movies</h2>
+        <h2> Suggested Movies</h2>
         <hr>
         <div class="row">
             @foreach ($suggested_movies as $movie)

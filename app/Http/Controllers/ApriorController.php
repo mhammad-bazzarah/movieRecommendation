@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Cache;
 class ApriorController extends Controller
 {
     static $numOfUsers = 10;
-    const min_supp_count = 5;
+    const min_supp_count =5;
     const min_supp = 0.5;
     const min_conf = 0.8;
     static $supportcounts = [];
@@ -37,7 +37,7 @@ class ApriorController extends Controller
         $min_supp = $request->min_supp ? $request->min_supp : self::min_supp;
         $min_conf = $request->min_conf ? $request->min_conf : self::min_conf;
         $suggestions =  $this->sugget($num, $min_supp_count, $min_supp, $min_conf);
-        $suggested_movies = Movie::whereIn('movieId', $suggestions)->simplePaginate(6);
+        $suggested_movies = Movie::whereIn('movieId', $suggestions)->Paginate(6);
         return view('frontend.suggested', compact('suggested_movies'));
     }
     /**

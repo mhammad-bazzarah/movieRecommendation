@@ -16,7 +16,7 @@
                                 <h5 class="d-inline">Number Of Transactions: </h5>
                                 <label for="numOfTransactions"> <span id="numOfTransactionsValue">1</span></label>
                                 <input type="range" class="form-control" id="numOfTransactions" name="numOfTransactions"
-                                    min="10" max="40" step="1"
+                                    min="1" max="20" step="1"
                                     oninput="numOfTransactionsValue.value = numOfTransactions.value">
                             </div>
 
